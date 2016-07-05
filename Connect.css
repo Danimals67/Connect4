@@ -54,6 +54,66 @@ button#resetButton{
 	border:2px solid #696969;
 	outline: none;
 }
+
+#games-container{
+	position: relative;
+	float: left;
+	border: 1px solid black;
+	width: 120px;
+	height: 92px;
+	top: 21px;
+	background: white;
+	left: 30px;
+}
+p#games{
+	text-decoration: underline;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: -3px;
+	margin-top: 3px;
+}
+p#oddlect{
+	text-indent: 5px;
+	margin-top: 5px;
+	//padding-top: 5px;
+	
+	//border: 1px solid black;
+}
+
+p#simon{
+	text-indent: 5px;
+	margin-top: -15px;
+	margin-bottom: 15px;
+}
+
+p#soon{
+	text-indent: 5px;
+	margin-top: -15px;
+	margin-bottom: 15px;
+	font-style: italic;
+}
+
 #test{
 	margin-top: -10px;
+}
+
+a:link{
+	color: blue;
+	text-decoration: none;
+}
+
+a:visited{
+	color: blue;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: red;
+}
+
+a:active{
+	text-decoration: underline;
+	color: purple;
 }
