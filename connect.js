@@ -12,8 +12,12 @@ var board     = new Array(7);
 var move      = 1;
 var rowCount = 0;
 var colCount = 0;
+var rWins = 0;
+var yWins = 0;
 
 function drawBoard(){
+	document.getElementById("resetButton").disabled = true;
+	board = new Array(7);
 	for(var i = 0; i < 7; i++){
 		board[i] = new Array(7);
 	}
@@ -41,8 +45,9 @@ function drawBoard(){
 }
 
 function ResetBoard(){
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	pieceX = 170;
-    pieceY = 25;
+    pieceY = 50;
 	rowCount = 0;
 	colCount = 0;
 	drawBoard();
@@ -147,7 +152,7 @@ function redMove(){
 	//alert("Column " + col + "  " + "Row " + row);
 	//alert(board[1][2])
 	//checkWin();
-	checkWin();
+	checkRedWin();
 }
 
 function yellowMove(){
@@ -174,6 +179,7 @@ function yellowMove(){
 	board[col][row] = "Y";
 	move = 1;
 	document.getElementById("Turn").innerHTML = "Turn: Red";
+	checkYellowWin();
 }
 
 function TestValue(){
@@ -182,7 +188,7 @@ function TestValue(){
 	alert(board[xBoard][yBoard]);
 }
 
-function checkHorizontal(){
+/*function checkHorizontal(){
 	var win = false;
 	var concRow = "";
 	var index = 0;
@@ -196,10 +202,10 @@ function checkHorizontal(){
 			alert("Blah");
 		}
 	}
-}
+}*/
 
-function checkWin(){
-	var start;
+function checkRedWin(){
+	
 	for(var i = 0; i < 7; i++){
 		for(var j = 0; j < 6; j++){
 			if(board[i][j] == "R"){
@@ -220,7 +226,9 @@ function checkWin(){
 					if(board[i + 1][j] == "R"){
 						if(board[i + 2][j] == "R"){
 							if(board[i + 3][j] == "R"){
-								alert("Horizonal Red Win");
+								//alert("Horizonal Red Win");
+								rWins++;
+								Win()
 							}
 						}
 					}
@@ -230,7 +238,9 @@ function checkWin(){
 					if(board[i][j + 1] == "R"){
 						if(board[i][j + 2] == "R"){
 							if(board[i][j + 3] == "R"){
-								alert("Vertical Red Win");
+								//alert("Vertical Red Win");
+								rWins++;
+								Win()
 							}
 						}
 					}
@@ -239,18 +249,22 @@ function checkWin(){
 				if(i <= 3 && j <= 4){
 					if(board[i+1][j+1] == "R"){
 						if(board[i+2][j+2] == "R"){
-							if(board[i+3][j+3]){
-								alert("Up-Right Red Win");
+							if(board[i+3][j+3] == "R"){
+								//alert("Up-Right Red Win");
+								rWins++;
+								Win()
 							}
 						}
 					}
 				}
 				//UP-LEFT DIAGONAL CHECK
 				if(i <=3 && j <= 4){
-					if(board[i-1][j+1] == "R"){
-						if(board[i-2][j+2] == "R"){
-							if(board[i-3][j+3]){
-								alert("Up-Left Red Win");
+					if(board[Math.abs(i-1)][j+1] == "R"){
+						if(board[Math.abs(i-2)][j+2] == "R"){
+							if(board[Math.abs(i-3)][j+3] == "R"){
+								//alert("Up-Left Red Win");
+								rWins++;
+								Win()
 							}
 						}
 					}
@@ -258,4 +272,79 @@ function checkWin(){
 			}
 		}
 	}
+}
+
+function checkYellowWin(){
+	for(var i = 0; i < 7; i++){
+		for(var j = 0; j < 6; j++){
+			if(board[i][j] == "Y"){
+				/*if(i => 3){
+					//checkLeft
+					if(board[i - 1][j] == "Y"){
+						if(board[i - 2][j] == "Y"){
+							if(board[i - 3][j] == "Y"){
+								alert("Win");
+							}
+						}
+					}
+				}*/
+				//I don't know how this is working
+				//HORIZONTAL CHECK
+				if(i <= 3){
+					//checkRight
+					if(board[i + 1][j] == "Y"){
+						if(board[i + 2][j] == "Y"){
+							if(board[i + 3][j] == "Y"){
+								//alert("Horizonal Yellow Win");
+								yWins++;
+								Win()
+							}
+						}
+					}
+				}
+				//VERTICAL CHECK
+				if(j <= 4){
+					if(board[i][j + 1] == "Y"){
+						if(board[i][j + 2] == "Y"){
+							if(board[i][j + 3] == "Y"){
+								//alert("Vertical Yellow Win");
+								yWins++;
+								Win()
+							}
+						}
+					}
+				}
+				//UP-RIGHT DIAGONAL CHECK
+				if(i <= 3 && j <= 4){
+					if(board[i+1][j+1] == "Y"){
+						if(board[i+2][j+2] == "Y"){
+							if(board[i+3][j+3] == "Y"){
+								//alert("Up-Right Yellow Win");
+								yWins++;
+								Win()
+							}
+						}
+					}
+				}
+				//UP-LEFT DIAGONAL CHECK
+				if(i <=3 && j <= 4){
+					if(board[Math.abs(i-1)][j+1] == "Y"){
+						if(board[Math.abs(i-2)][j+2] == "Y"){
+							if(board[Math.abs(i-3)][j+3] == "Y"){
+								//alert("Up-Left Yellow Win");
+								yWins++;
+								Win()
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+function Win(){
+	document.getElementById("rWins").innerHTML = "Red Wins: " + rWins;
+	document.getElementById("yWins").innerHTML = "Yellow Wins: " + yWins;
+	document.getElementById("resetButton").disabled = false;
 }

@@ -20,3 +20,40 @@ body{
 h1{
 	text-align: center;
 }
+
+#Game-Info{
+	position:relative;
+	float: right;
+	border: 1px solid black;
+	width: 110px;
+	height: 100px;
+	top: 110px;
+	right: 20px;
+	background: white;
+}
+
+p{
+	text-indent: 5px;
+}
+p#Turn{
+	margin-top: 3px;
+}
+
+p#rWins{
+	margin-top: -13px;
+}
+
+p#yWins{
+	margin-top: -13px;
+}
+
+button#resetButton{
+	width: 75%;
+	height: 25px;
+	border-radius: 5px;
+	border:2px solid #696969;
+	outline: none;
+}
+#test{
+	margin-top: -10px;
+}

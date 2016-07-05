@@ -7,11 +7,20 @@
 <title>Connect 4</title>
 </head>
 <body>
- <!--<input type = "button" value = "Reset" onclick = "ResetBoard()"></input>-->
+
+ <!--<input type = "button" value = "Reset" onclick = "ResetBoard()"></input>
  <input type = "button" value = "Test" onclick = "TestValue()"></input><br>
  X:<input type = "text" id = "xCoord"></input><br>
- Y:<input type = "text" id = "yCoord"></input>
- <h1 id = "Turn">Turn: Red</h1>
- <canvas id = "myCanvas" width = "900" height = "700"></canvas>
+ Y:<input type = "text" id = "yCoord"></input>-->
+ <h1>Connect 4</h1>
+ <div id = "Game-Info">
+	<p id = "Turn">Turn: Red</p>
+	<p id = "rWins">Red Wins:</p>
+	<p id = "yWins">Yellow Wins:</p>
+	<div style = "text-align: center" id = "test">
+	 <button value = "Play Again" id = "resetButton" onclick = "ResetBoard()">Play Again</button>
+	</div>
+ </div>
+ <canvas id = "myCanvas" width = "900" height = "700" style="border:1px solid #000000;"></canvas>
 </body>
 </html>
