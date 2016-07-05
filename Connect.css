@@ -1,5 +1,5 @@
 body{
-
+	background: #FFEFD3;
 }
 
 #myCanvas{
@@ -19,6 +19,8 @@ body{
 
 h1{
 	text-align: center;
+	font-size: 44px;
+	margin-top: 0px;
 }
 
 #Game-Info{
