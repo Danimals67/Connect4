@@ -89,6 +89,12 @@ p#simon{
 	margin-bottom: 15px;
 }
 
+p#melee{
+	text-indent: 5px;
+	margin-top: -15px;
+	margin-bottom: 15px;
+}
+
 p#soon{
 	text-indent: 5px;
 	margin-top: -15px;
