@@ -1,5 +1,6 @@
 body{
 	background: #FFEFD3;
+	-webkit-user-select: none;
 }
 
 #myCanvas{
@@ -27,7 +28,7 @@ h1{
 	position:relative;
 	float: right;
 	border: 1px solid black;
-	width: 110px;
+	width: 130px;
 	height: 100px;
 	top: 110px;
 	right: 20px;

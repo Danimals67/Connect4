@@ -14,6 +14,7 @@ var rowCount = 0;
 var colCount = 0;
 var rWins = 0;
 var yWins = 0;
+var win = false;
 
 function drawBoard(){
 	document.getElementById("resetButton").disabled = true;
@@ -51,6 +52,7 @@ function ResetBoard(){
 	rowCount = 0;
 	colCount = 0;
 	drawBoard();
+	win = false;
 }
 
 function drawPiece(){
@@ -64,50 +66,52 @@ function drawPiece(){
 }
 
 function clickPos(event){
-	var totalOffsetX   = 0;
-    var totalOffsetY   = 0;
-    var canvasX        = 0;
-    var canvasY        = 0;
-    var currentElement = this;
-	var increment      = 70;
-	var hundo          = 0;
+	if(win == false){
+		var totalOffsetX   = 0;
+		var totalOffsetY   = 0;
+		var canvasX        = 0;
+		var canvasY        = 0;
+		var currentElement = this;
+		var increment      = 70;
+		var hundo          = 0;
 
-    do{
-        totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
-        totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
-    }
-    while(currentElement = currentElement.offsetParent)
+		do{
+			totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
+			totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
+		}
+		while(currentElement = currentElement.offsetParent)
 
-    canvasX = event.pageX - totalOffsetX;
-    canvasY = event.pageY - totalOffsetY;
-	/*if(70 == Math.abs(070)){
-		alert("True");
-	}*/
-	//FIXED
-	//BUG for some reason for loop is looping once before recognizing first column
-	//alert("X: " + canvasX + "   " + "Y: " + canvasY);
-	for(i = 0; i < 7; i++){
-		if(i == 0){
-			if(canvasX >= increment && canvasX <= (increment + 100)){
-				column = (i + 1);
-				//alert("Column " + column + " \n MIN: " + increment + "\n MAX: " + (increment + 100));
-				Move();
+		canvasX = event.pageX - totalOffsetX;
+		canvasY = event.pageY - totalOffsetY;
+		/*if(70 == Math.abs(070)){
+			alert("True");
+		}*/
+		//FIXED
+		//BUG for some reason for loop is looping once before recognizing first column
+		//alert("X: " + canvasX + "   " + "Y: " + canvasY);
+		for(i = 0; i < 7; i++){
+			if(i == 0){
+				if(canvasX >= increment && canvasX <= (increment + 100)){
+					column = (i + 1);
+					//alert("Column " + column + " \n MIN: " + increment + "\n MAX: " + (increment + 100));
+					Move();
+				}
+				increment += 10;
+				hundo += 100;
 			}
-			increment += 10;
-			hundo += 100;
-		}
-		else if(i > 0){
-			if(canvasX >= (hundo + increment) && canvasX <= ((hundo + 100) + increment)){
-				column = (i + 1);
-				//alert("Column " + column + " \n MIN: " + (hundo + increment) + "\n MAX: " + ((hundo + 100) + increment));
-				//increment += 10;
-				Move();
+			else if(i > 0){
+				if(canvasX >= (hundo + increment) && canvasX <= ((hundo + 100) + increment)){
+					column = (i + 1);
+					//alert("Column " + column + " \n MIN: " + (hundo + increment) + "\n MAX: " + ((hundo + 100) + increment));
+					//increment += 10;
+					Move();
+				}
+				increment += 10;
+				hundo += 100;
 			}
-			increment += 10;
-			hundo += 100;
+			//alert("Column " + (i + 1) + " \n MIN: " + (hundo + increment) + "\n MAX: " + ((hundo + 100) + increment));
+			//increment += 10;
 		}
-		//alert("Column " + (i + 1) + " \n MIN: " + (hundo + increment) + "\n MAX: " + ((hundo + 100) + increment));
-		//increment += 10;
 	}
 }
 
@@ -347,4 +351,5 @@ function Win(){
 	document.getElementById("rWins").innerHTML = "Red Wins: " + rWins;
 	document.getElementById("yWins").innerHTML = "Yellow Wins: " + yWins;
 	document.getElementById("resetButton").disabled = false;
+	win = true;
 }
